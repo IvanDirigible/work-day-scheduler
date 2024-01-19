@@ -1,11 +1,13 @@
 var saveBtn = $(".saveBtn");
-
-var curentDate = dayjs().format("MMMM D, YYYY");
+var timeBlock;
+var currentDate = dayjs().format("MMMM D, YYYY");
+var currentHour = dayjs().format("HH");
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 $(function () {
-  
+
+
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -30,13 +32,14 @@ saveBtn.on("click", function() {
   var hour = $(this).parent().attr("id");
   var description = $(this).siblings(".description").val();
   localStorage.setItem(hour, description);
+  console.log(hour);
+  console.log(description);
+  console.log(localStorage);
 });
 
 function addTense() {
-  var currentHour = dayjs().format("HH");
-
   $(".time-block").each(function() {
-    var timeBlock = $(this).attr("id");
+    timeBlock = $(this).attr("id").match(/\d+$/)[0];
     if (timeBlock < currentHour) {
       $(this).addClass("past");
     } else if (timeBlock === currentHour) {
@@ -45,8 +48,21 @@ function addTense() {
       $(this).addClass("future");
     }
   })
+  console.log("timeBlock:" + timeBlock);
+  console.log("currentHour" + currentHour);
 };
 
+function userMemory() {
+  $(".time-block").each(function() {
+  timeBlock = $(this).attr("id");
+  var memoryRecall = localStorage.getItem(timeBlock);
+  $(this).val(memoryRecall);
+  })
+  console.log("MemorytimeBlock:" + timeBlock);
+  console.log("Recall:" + memoryRecall);
+};
 
+$("#currentDay").text(currentDate);
 
-$("#currentDay").text(curentDate);
+addTense();
+userMemory();
