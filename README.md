@@ -21,3 +21,12 @@ This is a simple calendar application that allows you to schedule out the hours 
 The following animation demonstrates the application functionality:
 
 ![A user clicks on slots on the color-coded calendar and edits the events.](05-third-party-apis-homework-demo.gif)
+
+## Credits
+Thanks to Chris for his advice on how to correctly target the parent attributes.
+
+## License
+This project is licensed under the MIT license.  
+License Link  
+https://opensource.org/licenses/MIT   
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]  
